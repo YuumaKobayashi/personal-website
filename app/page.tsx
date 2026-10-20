@@ -1,69 +1,113 @@
-import Image from "next/image";
+
+import Link from "next/link";
+
+const projects = [
+  {
+    name: "DSH Plugin",
+    description: "一个正在持续迭代的插件项目，记录从开发到打包交付的工程实践。",
+    tags: ["Plugin", "Engineering"],
+  },
+  {
+    name: "MyWebsite",
+    description: "使用 Next.js、TypeScript 和 Tailwind CSS 构建的个人网站。",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-zinc-950 text-zinc-100">
+      <div className="mx-auto max-w-5xl px-6">
+        {/* 导航 */}
+        <header className="flex items-center justify-between border-b border-zinc-800 py-6">
+          <Link href="/" className="text-xl font-bold tracking-tight">
+            MyWebsite<span className="text-cyan-400">.</span>
+          </Link>
+
+          <nav className="flex gap-6 text-sm text-zinc-400">
+            <Link href="/" className="hover:text-white">Home</Link>
+            <Link href="/projects" className="hover:text-white">Projects</Link>
+            <Link href="/blog" className="hover:text-white">Blog</Link>
+            <Link href="/about" className="hover:text-white">About</Link>
+          </nav>
+        </header>
+
+        {/* 个人介绍 */}
+        <section className="py-24 md:py-32">
+          <p className="mb-5 text-sm font-medium tracking-widest text-cyan-400">
+            HELLO, WORLD!
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+          <h1 className="text-5xl font-bold leading-tight tracking-tight md:text-7xl">
+            こんにちは、私は
+            <br />
+            <span className="text-cyan-400">日本の女子高校生です</span>
+          </h1>
+
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
+          コードを書くのが好きで、数学・物理学・化学・天文学・コンピューター科学、そして文学・歴史・哲学・日本のアニメも好きな女の子。でも、ちょっと臆病で内向的だよ～
+          </p>
+
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link
+              href="/projects"
+              className="rounded-lg bg-cyan-400 px-6 py-3 font-semibold text-zinc-950 transition hover:bg-cyan-300"
+            >
+              View my projects →
+            </Link>
+
+            <Link
+              href="/about"
+              className="rounded-lg border border-zinc-700 px-6 py-3 transition hover:border-zinc-400"
+            >
+              Learn more
+            </Link>
+          </div>
+        </section>
+
+        {/* 项目展示 */}
+        <section className="pb-24">
+          <div className="mb-8 flex items-end justify-between">
+            <div>
+              <h2 className="text-3xl font-bold">SELECTED WORK</h2>
+            </div>
+            <Link href="/projects" className="text-sm text-zinc-400 hover:text-white">
+              All →
+            </Link>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {projects.map((project) => (
+              <article
+                key={project.name}
+                className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-7 transition hover:border-cyan-500/50"
+              >
+                <h3 className="text-xl font-semibold">{project.name}</h3>
+                <p className="mt-4 min-h-16 leading-7 text-zinc-400">
+                  {project.description}
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-md bg-zinc-800 px-3 py-1 text-xs text-cyan-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* 页脚 */}
+        <footer className="flex flex-wrap justify-between gap-4 border-t border-zinc-800 py-8 text-sm text-zinc-500">
+          <p>© {new Date().getFullYear()} MyWebsite</p>
+          <p>Built with Next.js & Tailwind CSS</p>
+        </footer>
+      </div>
+    </main>
   );
 }
